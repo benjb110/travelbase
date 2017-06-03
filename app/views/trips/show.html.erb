@@ -1,43 +1,44 @@
 <div class="page-header">
-  <h3>Trip #<%= @trip.id %></h3>
+  <h3><%= @trip.trip_name %></h3>
 </div>
 
-<div class="row">
-  <div class="col-md-12 mb-2">
-    <dl class="dl-horizontal">
-      <dt>Start date</dt>
-      <dd><%= @trip.start_date %></dd>
+<div class="panel panel-default">
+  <div class="panel-heading"> <h4> Trip Quick Facts </h4> </div>
+  <div class="panel-body">
+    <dt>Start date</dt>
+    <dd><%= @trip.start_date %></dd>
 
-      <dt>End date</dt>
-      <dd><%= @trip.end_date %></dd>
+    <!-- <dt>End date</dt>
+    <dd><%= @trip.end_date %></dd> -->
+    <dt>Country</dt>
+    <dd><%= @trip.country.name %></dd>
 
-      <dt>User</dt>
-      <dd><%= @trip.user_id %></dd>
+    <dt>Trip Length</dt>
+    <dd><%= distance_of_time_in_words(@trip.start_date,@trip.end_date) %></dd>
 
-      <dt>Comments</dt>
-      <dd><%= @trip.comments %></dd>
+    <dt>Comments</dt>
+    <dd><%= @trip.comments %></dd>
 
-      <dt>Country</dt>
-      <dd><%= @trip.country_id %></dd>
 
-      <dt>Rating</dt>
-      <dd><%= @trip.rating %></dd>
+    <dt>Rating</dt>
+    <dd>   <span class="badge"><%= @trip.rating %> </span> </dd>
 
-      <dt>Trip name</dt>
-      <dd><%= @trip.trip_name %></dd>
-
-    </dl>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/trips" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/trips/<%= @trip.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_trip/<%= @trip.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
   </div>
 </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"> <h4> Trip Activities </h4> </div>
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">14</span>
+    Departed on <%=@trip.start_date   %>
+  </li>
+  <li class="list-group-item">
+    <span class="badge">2</span>
+    <%= distance_of_time_in_words(@trip.start_date,@trip.end_date) %>
+  </li>
+  <li class="list-group-item">
+    <span class="badge">1</span>
+    Morbi leo risus
+  </li>
+</ul>

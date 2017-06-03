@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603150351) do
+ActiveRecord::Schema.define(version: 20170603210237) do
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.integer  "visit_id"
+    t.date     "when_happened"
+    t.text     "review"
+    t.integer  "activity_rating"
+    t.boolean  "recommend"
+    t.string   "photos"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string   "name"
@@ -45,9 +58,9 @@ ActiveRecord::Schema.define(version: 20170603150351) do
     t.integer  "country_residing_id"
     t.string   "username"
     t.string   "picture"
-    t.integer  "age"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.date     "birthdate"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

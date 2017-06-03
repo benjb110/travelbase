@@ -1,10 +1,10 @@
 <div class="jumbotron">
-  <h1> <%= @users.username %></h1>
-  <p> Age</p>
-  <p> Born in <%= @users.country_born.name %></p>
-  <p> Currently living in <%= @users.country_residing.name %></p>
+  <h1> <%= @user.username %></h1>
+  <p> <%= @year -@user.birthdate.year %> years old </p>
+  <p> Born in <%= @user.country_born.name %></p>
+  <p> Currently living in <%= @user.country_residing.name %></p>
 
-  <% if @users.id== current_user.id  %>
+  <% if @user.id== current_user.id  %>
   <p> <a href="/trips/new" class="btn btn-primary btn-lg">Create New Trip</a></p>
   <% else %>
   <% end %>
@@ -19,7 +19,7 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>#</th>
+  
       <th>Trip</th>
       <th>Country</th>
       <th>Dates</th>
@@ -35,12 +35,11 @@
 
 
 
-        <%@users.trips.each do |trip| %>
+        <%@user.trips.each do |trip| %>
         <tr class="success">
           <!-- <tr class="danger">
              <tr class="warning"> -->
-      <td><%=trip.id %></td>
-      <td><%=trip.trip_name %></td>
+      <td> <a href="/trips/<%= trip.id %>"> <%=trip.trip_name %> </a> </td>
       <td> <%=trip.country.name %> </td>
       <td>Column content</td>
       <td>Column content</td>
@@ -53,7 +52,7 @@
 
 
 <h2>Trip Details</h2>
-<%@users.trips.each do |trip| %>
+<%@user.trips.each do |trip| %>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><%=trip.trip_name %></h3>

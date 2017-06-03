@@ -35,7 +35,7 @@
           Start date
         </label>
 
-        <input type="text" id="start_date" name="start_date" placeholder="Start date" class="form-control" value="<%= @trip.start_date %>">
+        <input type="date" id="start_date" name="start_date" placeholder="Start date" class="form-control" value="<%= @trip.start_date %>">
       </div>
 
       <!-- Label and input for end_date -->
@@ -44,7 +44,7 @@
           End date
         </label>
 
-        <input type="text" id="end_date" name="end_date" placeholder="End date" class="form-control" value="<%= @trip.end_date %>">
+        <input type="date" id="end_date" name="end_date" placeholder="End date" class="form-control" value="<%= @trip.end_date %>">
       </div>
 
       <!-- Label and input for user_id -->
@@ -72,7 +72,7 @@
       </label>
 
       <%= select_tag(:country_id, options_from_collection_for_select(Country.all, :id, :name, @trip.country_id), :class => "form-control") %>
-      
+
 
     </div>
 

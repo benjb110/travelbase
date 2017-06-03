@@ -3,15 +3,21 @@ class UsersController < ApplicationController
     @users = User.all
 
     render("users/index.html.erb")
-end
+  end
 
-def show
+  def show
+
+    now= Date.today
+    @year= now.year
 
 
-  @users = User.find(params[:id])
+    if params[:id] == nil # coming from the home page ("/")
+      @user = current_user # don't have to worry about whether user signed in because of security settingsin ApplicationController
+    else # coming from "/user/:id"
+      @user = User.find(params[:id])
+    end
 
-  render("users/show.html.erb")
-
-end
+    render("users/show.html.erb")
+  end
 
 end

@@ -1,0 +1,99 @@
+<!-- Validation failure messages -->
+<% if @activity.errors.any? %>
+  <% @activity.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Activity</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_activity" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @activity.name %>">
+      </div>
+
+      <!-- Label and input for address -->
+      <div class="form-group">
+        <label for="address" class="control-label">
+          Address
+        </label>
+
+        <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @activity.address %>">
+      </div>
+
+      <!-- Label and input for visit_id -->
+      <div class="form-group">
+        <label for="visit_id" class="control-label">
+          Visit
+        </label>
+
+        <input type="text" id="visit_id" name="visit_id" placeholder="Visit" class="form-control" value="<%= @activity.visit_id %>">
+      </div>
+
+      <!-- Label and input for when_happened -->
+      <div class="form-group">
+        <label for="when_happened" class="control-label">
+          When happened
+        </label>
+
+        <input type="text" id="when_happened" name="when_happened" placeholder="When happened" class="form-control" value="<%= @activity.when_happened %>">
+      </div>
+
+      <!-- Label and input for review -->
+      <div class="form-group">
+        <label for="review" class="control-label">
+          Review
+        </label>
+
+        <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @activity.review %></textarea>
+      </div>
+
+      <!-- Label and input for activity_rating -->
+      <div class="form-group">
+        <label for="activity_rating" class="control-label">
+          Activity rating
+        </label>
+
+        <input type="text" id="activity_rating" name="activity_rating" placeholder="Activity rating" class="form-control" value="<%= @activity.activity_rating %>">
+      </div>
+
+      <!-- Label and input for recommend -->
+      <div class="checkbox">
+        <label for="recommend">
+          <input type="checkbox" id="recommend" name="recommend" value="1" <%= "checked" if @activity.recommend %>>
+          Recommend
+        </label>
+      </div>
+
+      <!-- Label and input for photos -->
+      <div class="form-group">
+        <label for="photos" class="control-label">
+          Photos
+        </label>
+
+        <input type="text" id="photos" name="photos" placeholder="Photos" class="form-control" value="<%= @activity.photos %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Activity
+      </button>
+      or
+      <a href="/activities">Cancel</a>
+    </form>
+  </div>
+</div>
