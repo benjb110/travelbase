@@ -38,20 +38,20 @@
 
       <!-- Label and input for visit_id -->
       <div class="form-group">
-        <label for="visit_id" class="control-label">
-          Visit
+        <label for="trip_id" class="control-label">
+          Trip
         </label>
 
-        <input type="text" id="visit_id" name="visit_id" placeholder="Visit" class="form-control" value="<%= @activity.visit_id %>">
+        <input type="integer" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @activity.trip_id %>">
       </div>
 
       <!-- Label and input for when_happened -->
       <div class="form-group">
         <label for="when_happened" class="control-label">
-          When happened
+          Date
         </label>
 
-        <input type="text" id="when_happened" name="when_happened" placeholder="When happened" class="form-control" value="<%= @activity.when_happened %>">
+        <input type="date" id="when_happened" name="when_happened" placeholder="When happened" class="form-control" value="<%= @activity.when_happened %>">
       </div>
 
       <!-- Label and input for review -->

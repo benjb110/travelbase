@@ -14,6 +14,7 @@ class ActivitiesController < ApplicationController
   def new
     @activity = Activity.new
 
+
     render("activities/new.html.erb")
   end
 
@@ -22,7 +23,7 @@ class ActivitiesController < ApplicationController
 
     @activity.name = params[:name]
     @activity.address = params[:address]
-    @activity.visit_id = params[:visit_id]
+    @activity.trip_id = params[:trip_id]
     @activity.when_happened = params[:when_happened]
     @activity.review = params[:review]
     @activity.activity_rating = params[:activity_rating]
