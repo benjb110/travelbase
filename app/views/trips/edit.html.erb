@@ -1,0 +1,91 @@
+<!-- Validation failure messages -->
+<% if @trip.errors.any? %>
+  <% @trip.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Trip #<%= @trip.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_trip/<%= @trip.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for start_date -->
+      <div class="form-group">
+        <label for="start_date" class="control-label">
+          Start date
+        </label>
+
+        <input type="text" id="start_date" name="start_date" placeholder="Start date" class="form-control" value="<%= @trip.start_date %>">
+      </div>
+
+      <!-- Label and input for end_date -->
+      <div class="form-group">
+        <label for="end_date" class="control-label">
+          End date
+        </label>
+
+        <input type="text" id="end_date" name="end_date" placeholder="End date" class="form-control" value="<%= @trip.end_date %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @trip.user_id %>">
+      </div>
+
+      <!-- Label and input for comments -->
+      <div class="form-group">
+        <label for="comments" class="control-label">
+          Comments
+        </label>
+
+        <textarea id="comments" name="comments" placeholder="Comments" class="form-control" rows="3"><%= @trip.comments %></textarea>
+      </div>
+
+      <!-- Label and input for country_id -->
+      <div class="form-group">
+        <label for="country_id" class="control-label">
+          Country
+        </label>
+
+        <input type="text" id="country_id" name="country_id" placeholder="Country" class="form-control" value="<%= @trip.country_id %>">
+      </div>
+
+      <!-- Label and input for rating -->
+      <div class="form-group">
+        <label for="rating" class="control-label">
+          Rating
+        </label>
+
+        <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @trip.rating %>">
+      </div>
+
+      <!-- Label and input for trip_name -->
+      <div class="form-group">
+        <label for="trip_name" class="control-label">
+          Trip name
+        </label>
+
+        <input type="text" id="trip_name" name="trip_name" placeholder="Trip name" class="form-control" value="<%= @trip.trip_name %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Trip
+      </button>
+      or
+      <a href="/trips/<%= @trip.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

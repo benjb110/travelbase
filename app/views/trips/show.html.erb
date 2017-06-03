@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h3>Trip #<%= @trip.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Start date</dt>
+      <dd><%= @trip.start_date %></dd>
+
+      <dt>End date</dt>
+      <dd><%= @trip.end_date %></dd>
+
+      <dt>User</dt>
+      <dd><%= @trip.user_id %></dd>
+
+      <dt>Comments</dt>
+      <dd><%= @trip.comments %></dd>
+
+      <dt>Country</dt>
+      <dd><%= @trip.country_id %></dd>
+
+      <dt>Rating</dt>
+      <dd><%= @trip.rating %></dd>
+
+      <dt>Trip name</dt>
+      <dd><%= @trip.trip_name %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/trips" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/trips/<%= @trip.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_trip/<%= @trip.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

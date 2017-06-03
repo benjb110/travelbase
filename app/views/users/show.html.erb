@@ -1,1 +1,76 @@
-hi there
+<div class="jumbotron">
+  <h1> <%= @users.username %></h1>
+  <p> Age</p>
+  <p> Born in <%= @users.country_born.name %></p>
+  <p> Currently living in <%= @users.country_residing.name %></p>
+
+  <% if @users.id== current_user.id  %>
+  <p> <a href="/trips/new" class="btn btn-primary btn-lg">Create New Trip</a></p>
+  <% else %>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Trip</th>
+      <th>Country</th>
+      <th>Dates</th>
+      <th>Length</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <h2>Trip Summaries</h2>
+
+
+
+
+        <%@users.trips.each do |trip| %>
+        <tr class="success">
+          <!-- <tr class="danger">
+             <tr class="warning"> -->
+      <td><%=trip.id %></td>
+      <td><%=trip.trip_name %></td>
+      <td> <%=trip.country.name %> </td>
+      <td>Column content</td>
+      <td>Column content</td>
+      <td><%=trip.comments %></td>
+    </tr>
+      <% end %>
+  </tbody>
+</table>
+
+
+
+<h2>Trip Details</h2>
+<%@users.trips.each do |trip| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%=trip.trip_name %></h3>
+  </div>
+  <div class="panel-body">
+    <ul>
+      Activities
+    </ul>
+    <ul>
+    <%=trip.comments %>
+    </ul>
+    <ul>
+      pics
+    </ul>
+
+
+
+  </div>
+</div>
+  <% end %>
