@@ -25,6 +25,10 @@
       <th>Dates</th>
       <th>Length</th>
       <th>Comments</th>
+      <% if @user.id== current_user.id  %>
+      <th> edit </th>
+      <% else %>
+      <% end %>
     </tr>
   </thead>
 
@@ -44,6 +48,10 @@
       <td>Column content</td>
       <td> <%= distance_of_time_in_words(trip.start_date,trip.end_date)%> </td>
       <td><%=trip.comments %></td>
+      <% if @user.id== current_user.id  %>
+      <td> <a href="/trips/<%= trip.id %>/edit"> edit this trip </a> </td>
+      <% else %>
+      <% end %>
     </tr>
       <% end %>
   </tbody>

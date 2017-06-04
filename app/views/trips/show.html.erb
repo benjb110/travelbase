@@ -2,6 +2,8 @@
   <h3><%= @trip.trip_name %></h3>
 </div>
 
+
+
 <div class="panel panel-default">
   <div class="panel-heading"> <h4> Trip Quick Facts </h4> </div>
   <div class="panel-body">
@@ -22,8 +24,15 @@
     <dt>Rating</dt>
     <dd>   <span class="badge"><%= @trip.rating %> </span> </dd>
 
+
+    <% if @trip.user.id == current_user.id  %>
+    <p> <a href="/trips/<%=@trip.id%>/edit" class="btn btn-primary btn-sm">Edit</a></p>
+    <% else %>
+    <% end %>
   </div>
-</div>
+
+  </div>
+
 
 <div class="page-header">
   <div class="panel panel-default">
@@ -39,6 +48,10 @@
             <th>City</th>
             <th>Rating</th>
             <th>Reviews</th>
+            <% if @trip.user.id == current_user.id  %>
+            <th> Edit </th>
+            <% else %>
+            <% end %>
           </tr>
         </thead>
 
@@ -49,9 +62,13 @@
             <td> <a href="/activities/<%= activity.id %>"> <%=activity.name %> </a> </td>
             <td> <%=activity.name %> </td>
             <td><%=activity.when_happened %></td>
-            <td><%=activity.city %></td>
+            <td> city </td>
             <td><span class="badge"><%= @trip.rating %> </span></td>
             <td><%=activity.review %></td>
+            <% if @trip.user.id == current_user.id  %>
+            <td> <a href="/activities/<%= activity.id %>/edit"> edit this activity </a> </td>
+            <% else %>
+            <% end %>
           </tr>
           <% end %>
         </tbody>
