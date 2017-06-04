@@ -21,8 +21,30 @@
     <dt>Comments</dt>
     <dd><%= @trip.comments %></dd>
 
+
     <dt>Rating</dt>
-    <dd>   <span class="badge"><%= @trip.rating %> </span> </dd>
+    <dd>   <% if @trip.rating==1 %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% elsif @trip.rating==2 %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% elsif @trip.rating==3 %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% elsif @trip.rating==4 %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% else %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+    </dd>
 
 
     <% if @trip.user.id == current_user.id  %>
@@ -31,7 +53,7 @@
     <% end %>
   </div>
 
-  </div>
+</div>
 
 
 <div class="page-header">
@@ -63,7 +85,34 @@
             <td> <%=activity.name %> </td>
             <td><%=activity.when_happened %></td>
             <td> city </td>
-            <td><span class="badge"><%= @trip.rating %> </span></td>
+            <td>
+
+              <% if activity.activity_rating==1 %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% elsif activity.activity_rating==2 %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% elsif activity.activity_rating==3 %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% elsif activity.activity_rating %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% else %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% end %>
+
+
+
+
+            </td>
             <td><%=activity.review %></td>
             <% if @trip.user.id == current_user.id  %>
             <td> <a href="/activities/<%= activity.id %>/edit"> edit this activity </a> </td>
@@ -137,7 +186,14 @@
               Activity rating
             </label>
 
-            <input type="text" id="activity_rating" name="activity_rating" placeholder="Activity rating" class="form-control" value="<%= @activity.activity_rating %>">
+            <select name="activity_rating" id="activity_rating" class="form-control">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5" selected>5</option>
+            </select>
+
           </div>
 
           <!-- Label and input for recommend -->

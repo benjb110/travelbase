@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable
 
+  mount_uploader :picture, PictureUploader
+
   has_many :trips, :dependent => :destroy
   belongs_to :country_born, :class_name => "Country"
   belongs_to :country_residing, :class_name => "Country"

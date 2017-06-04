@@ -7,6 +7,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    @addr = @activity.address
 
     render("activities/show.html.erb")
   end

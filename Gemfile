@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# file uploads
+gem 'carrierwave'
 
 gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
 

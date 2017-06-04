@@ -69,7 +69,14 @@
           Activity rating
         </label>
 
-        <input type="text" id="activity_rating" name="activity_rating" placeholder="Activity rating" class="form-control" value="<%= @activity.activity_rating %>">
+        <select name="activity_rating" id="activity_rating" class="form-control" value="<%= @activity.activity_rating %>">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
       </div>
 
       <!-- Label and input for recommend -->

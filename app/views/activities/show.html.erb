@@ -1,27 +1,41 @@
 <div class="page-header">
   <h3> <%= @activity.name %></h3>
+  <h4><%= @activity.trip.trip_name %> </h4>
+    <h5> <%= @activity.when_happened %> </h5>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @activity.name %></dd>
-
-      <dt>Address</dt>
-      <dd><%= @activity.address %></dd>
-
-      <dt>Trip</dt>
-      <dd><%= @activity.trip_id %></dd>
-
-      <dt>When happened</dt>
-      <dd><%= @activity.when_happened %></dd>
 
       <dt>Review</dt>
       <dd><%= @activity.review %></dd>
 
       <dt>Activity rating</dt>
-      <dd><%= @activity.activity_rating %></dd>
+      <dd>
+        <% if @activity.activity_rating==1 %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <% elsif @activity.activity_rating==2 %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <% elsif @activity.activity_rating==3 %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <% elsif @activity.activity_rating==4 %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <% else %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <% end %>
+
+      </dd>
 
       <dt>Recommend</dt>
       <dd><%= @activity.recommend %></dd>
@@ -29,18 +43,31 @@
       <dt>Photos</dt>
       <dd><%= @activity.photos %></dd>
 
-    </dl>
+      <dt>Map</dt>
+      <dd>
+        <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAO_JsHfsCnleobA0XTfJj91GRM818vmsA
+        &q=<%= @addr.gsub(' ','+') %>" allowfullscreen>
+      </iframe>
+    </dd>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/activities" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/activities/<%= @activity.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_activity/<%= @activity.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
+  </dl>
+
+
+
+  <div class="btn-group btn-group-justified">
+    <a href="/activities" class="btn btn-primary">
+      Back
+    </a>
+    <a href="/activities/<%= @activity.id %>/edit" class="btn btn-warning">
+      Edit
+    </a>
+    <a href="/delete_activity/<%= @activity.id %>" class="btn btn-danger" rel="nofollow">
+      Delete
+    </a>
   </div>
+</div>
 </div>
