@@ -1,6 +1,8 @@
 class CountriesController < ApplicationController
   def index
-    @countries = Country.all
+
+    @q = Country.ransack(params[:q])
+    @countries = @q.result
 
     render("countries/index.html.erb")
   end

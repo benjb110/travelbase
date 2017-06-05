@@ -8,6 +8,8 @@ end
 # file uploads
 gem 'carrierwave'
 
+gem 'ransack'
+
 gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
 
 gem 'devise'

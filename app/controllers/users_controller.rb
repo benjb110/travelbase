@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+
+    @q = User.ransack(params[:q])
+ @users = @q.result
 
     render("users/index.html.erb")
   end
