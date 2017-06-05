@@ -1,9 +1,14 @@
 <div class="jumbotron">
   <img src="<%= @user.picture %>" class="img-responsive">
   <h1> <%= @user.username %></h1>
-  <p> <%= @year -@user.birthdate.year %> years old </p>
-  <p> Born in <%= @user.country_born.name %></p>
-  <p> Currently living in <%= @user.country_residing.name %></p>
+  <h4> <%= @year -@user.birthdate.year %> years old </h4>
+  <h4> Born in <%= @user.country_born.name %></h4>
+  <h4> Currently living in <%= @user.country_residing.name %></h4>
+  <h4> Has been on <%=@user.trips.count %> trip </h4>
+  
+
+
+
 
   <% if @user.id== current_user.id  %>
   <p> <a href="/trips/new" class="btn btn-primary btn-md">Create New Trip</a></p>

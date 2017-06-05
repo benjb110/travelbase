@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
+
+
     now= Date.today
     @year= now.year
 
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
     else # coming from "/user/:id"
       @user = User.find(params[:id])
     end
+
 
     render("users/show.html.erb")
   end

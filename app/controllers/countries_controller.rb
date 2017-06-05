@@ -10,6 +10,7 @@ class CountriesController < ApplicationController
   def show
     @country = Country.find(params[:id])
 
+
     render("countries/show.html.erb")
   end
 
