@@ -1,19 +1,20 @@
 <div class="jumbotron">
-  <img src="<%= @user.picture %>" class="img-responsive">
-  <h1> <%= @user.username %></h1>
-  <h4> <%= @year -@user.birthdate.year %> years old </h4>
-  <h4> Born in <%= @user.country_born.name %></h4>
-  <h4> Currently living in <%= @user.country_residing.name %></h4>
-  <h4> Has been on <%=@user.trips.count %> trip </h4>
-  
-
-
-
-
-  <% if @user.id== current_user.id  %>
-  <p> <a href="/trips/new" class="btn btn-primary btn-md">Create New Trip</a></p>
-  <% else %>
-  <% end %>
+    <div class="row">
+        <div class="col-sm-2 col-md-offset-1 col-md-4">
+          <h1> <%= @user.username %></h1>
+          <h4> <%= @year -@user.birthdate.year %> years old </h4>
+          <h4> Born in <%= @user.country_born.name %></h4>
+          <h4> Currently living in <%= @user.country_residing.name %></h4>
+          <h4> Has been on <%=@user.trips.count %> trips </h4>
+          <% if @user.id== current_user.id  %>
+          <p> <a href="/trips/new" class="btn btn-primary btn-md">Create New Trip</a></p>
+          <% else %>
+          <% end %>
+        </div>
+        <div class="col-md-offset-2 col-md-4">
+          <img src="<%= @user.picture %>" class="img-responsive">
+        </div>
+    </div>
 </div>
 
 
@@ -21,6 +22,14 @@
 
 
 
+
+
+
+
+<div class="row">
+        <div class="col-md-offset-1 col-md-10">
+        </div>
+</div>
 
 <table class="table table-striped table-hover ">
   <thead>

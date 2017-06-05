@@ -6,7 +6,7 @@
   <li class="active"><a href="#quickfacts" data-toggle="tab">Trip Quick Facts</a></li>
   <li><a href="#comments" data-toggle="tab">Comments and Rating</a></li>
   <li><a href="#activities" data-toggle="tab">Trip's Activities</a></li>
-  <li><a href="#trippics" data-toggle="tab">Pics</a></li>
+  <li><a href="#trippics" data-toggle="tab">Cover Pic</a></li>
   <% if @trip.user.id == current_user.id  %>
   <li>  <a href="#addactivity" data-toggle="tab">Add an Activity</a></li>
   <%else %>
@@ -24,257 +24,252 @@
     </ul>
     <%else %>
     <li class="disabled"><a>Options</a></li>
-  <%end %>
-</ul>
+    <%end %>
+  </ul>
 
-<div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active in" id="quickfacts">
-    <div class="panel panel-default">
-      <div class="panel-heading"> <h4> Trip Quick Facts </h4> </div>
-      <div class="panel-body">
-        <dt>Start date</dt>
-        <dd><%= @trip.start_date %></dd>
-        <!-- <dt>End date</dt>
-        <dd><%= @trip.end_date %></dd> -->
-        <dt>Country</dt>
-        <dd><%= @trip.country.name %></dd>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="quickfacts">
+      <div class="panel panel-default">
+        <div class="panel-heading"> <h4> Trip Quick Facts </h4> </div>
+        <div class="panel-body">
+          <dt>Start date</dt>
+          <dd><%= @trip.start_date %></dd>
+          <!-- <dt>End date</dt>
+          <dd><%= @trip.end_date %></dd> -->
+          <dt>Country</dt>
+          <dd><%= @trip.country.name %></dd>
 
-        <dt>Trip Length</dt>
-        <dd><%= distance_of_time_in_words(@trip.start_date,@trip.end_date) %></dd>
+          <dt>Trip Length</dt>
+          <dd><%= distance_of_time_in_words(@trip.start_date,@trip.end_date) %></dd>
 
-        <dt>Comments</dt>
-        <dd><%= @trip.comments %></dd>
-      </div>
-    </div>
-  </div>
-
-  <div class="tab-pane fade" id="comments">
-    <div class="panel panel-default">
-      <div class="panel-heading"> <h4> Comments and Rating </h4> </div>
-      <div class="panel-body">
-        <dt>Comments</dt>
-        <dd><%= @trip.comments %></dd>
-        <dt>Rating</dt>
-        <dd>   <% if @trip.rating==1 %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <% elsif @trip.rating==2 %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <% elsif @trip.rating==3 %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <% elsif @trip.rating==4 %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <% else %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <% end %>
-        </dd>
-      </div>
-    </div>
-  </div>
-
-  <div class="tab-pane fade" id="activities">
-    <div class="panel panel-default">
-      <div class="panel-heading"> <h4> Activity Summary </h4> </div>
-      <table class="table table-striped table-hover ">
-        <thead>
-          <tr>
-            <th>Activity</th>
-            <th>Type</th>
-            <th>Date</th>
-            <th>City</th>
-            <th>Rating</th>
-            <th>Reviews</th>
-            <% if @trip.user.id == current_user.id  %>
-            <th> Edit </th>
-            <% else %>
-            <% end %>
-          </tr>
-        </thead>
-
-
-        <tbody>
-          <%@trip.activities.each do |activity| %>
-          <tr class="success">
-            <td> <a href="/activities/<%= activity.id %>"> <%=activity.name %> </a> </td>
-            <td> <%=activity.name %> </td>
-            <td><%=activity.when_happened %></td>
-            <td> city </td>
-            <td>
-
-              <% if activity.activity_rating==1 %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <% elsif activity.activity_rating==2 %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <% elsif activity.activity_rating==3 %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <% elsif activity.activity_rating %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <% else %>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <% end %>
-
-            </td>
-            <td><%=activity.review %></td>
-            <% if @trip.user.id == current_user.id  %>
-            <td> <a href="/activities/<%= activity.id %>/edit"> edit this activity </a> </td>
-            <% else %>
-            <% end %>
-          </tr>
-          <% end %>
-          <% if @trip.user.id == current_user.id  %>
-          <tr class="active">
-            <td><a href="/activities/new"> Create a new activity for this trip </a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <%else %>
-            <%end %>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="tab-pane fade" id="trippics">
-    Pics
-  </div>
-
-  <div class="tab-pane fade" id="addactivity">
-    <% if current_user.id == @trip.user.id  %>
-    <div class="panel panel-default">
-      <div class="panel-heading"> <h4> Add an Activity </h4>
-
-        <div class="row">
-          <div class="col-md-12">
-            <form action="/create_activity" method="post">
-              <!-- Hidden input for authenticity token to protect from forgery -->
-              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-              <!-- Label and input for name -->
-              <div class="form-group">
-                <label for="name" class="control-label">
-                  Name
-                </label>
-
-                <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @activity.name %>">
-              </div>
-
-              <!-- Label and input for address -->
-              <div class="form-group">
-                <label for="address" class="control-label">
-                  Address
-                </label>
-
-                <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @activity.address %>">
-              </div>
-
-              <!-- Label and input for visit_id -->
-              <div class="form-group">
-                <!-- <label for="trip_id" class="control-label">
-                Trip
-              </label> -->
-
-              <input type="hidden" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @trip.id %>">
-            </div>
-
-            <!-- Label and input for when_happened -->
-            <div class="form-group">
-              <label for="when_happened" class="control-label">
-                Date
-              </label>
-
-              <input type="date" id="when_happened" name="when_happened" placeholder="When happened" class="form-control" value="<%= @trip.start_date %>">
-            </div>
-
-            <!-- Label and input for review -->
-            <div class="form-group">
-              <label for="review" class="control-label">
-                Review
-              </label>
-
-              <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @activity.review %></textarea>
-            </div>
-
-            <!-- Label and input for activity_rating -->
-            <div class="form-group">
-              <label for="activity_rating" class="control-label">
-                Activity rating
-              </label>
-
-              <select name="activity_rating" id="activity_rating" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5" selected>5</option>
-              </select>
-
-            </div>
-
-            <!-- Label and input for recommend -->
-            <div class="checkbox">
-              <label for="recommend">
-                <input type="checkbox" id="recommend" name="recommend" value="1" <%= "checked" if @activity.recommend %>>
-                Recommend
-              </label>
-            </div>
-
-            <!-- Label and input for photos -->
-            <div class="form-group">
-              <label for="photos" class="control-label">
-                Photos
-              </label>
-
-              <input type="text" id="photos" name="photos" placeholder="Photos" class="form-control" value="<%= @activity.photos %>">
-            </div>
-
-            <button class="btn btn-success">
-              Create Activity
-            </button>
-            or
-            <a href="/activities">Cancel</a>
-          </form>
-
+          <dt>Comments</dt>
+          <dd><%= @trip.comments %></dd>
         </div>
       </div>
-      <% else %>
-      <% end %>
+    </div>
+
+    <div class="tab-pane fade" id="comments">
+      <div class="panel panel-default">
+        <div class="panel-heading"> <h4> Comments and Rating </h4> </div>
+        <div class="panel-body">
+          <dt>Comments</dt>
+          <dd><%= @trip.comments %></dd>
+          <dt>Rating</dt>
+          <dd>   <% if @trip.rating==1 %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <% elsif @trip.rating==2 %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <% elsif @trip.rating==3 %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <% elsif @trip.rating==4 %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <% else %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <% end %>
+          </dd>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="activities">
+      <div class="panel panel-default">
+        <div class="panel-heading"> <h4> Activity Summary </h4> </div>
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>City</th>
+              <th>Rating</th>
+              <th>Reviews</th>
+              <% if @trip.user.id == current_user.id  %>
+              <th> Edit </th>
+              <% else %>
+              <% end %>
+            </tr>
+          </thead>
+
+
+          <tbody>
+            <%@trip.activities.each do |activity| %>
+            <tr class="success">
+              <td> <a href="/activities/<%= activity.id %>"> <%=activity.name %> </a> </td>
+              <td> <%=activity.name %> </td>
+              <td><%=activity.when_happened %></td>
+              <td> city </td>
+              <td>
+
+                <% if activity.activity_rating==1 %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% elsif activity.activity_rating==2 %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% elsif activity.activity_rating==3 %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% elsif activity.activity_rating %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% else %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <% end %>
+
+              </td>
+              <td><%=activity.review %></td>
+              <% if @trip.user.id == current_user.id  %>
+              <td> <a href="/activities/<%= activity.id %>/edit"> edit this activity </a> </td>
+              <% else %>
+              <% end %>
+            </tr>
+            <% end %>
+            <% if @trip.user.id == current_user.id  %>
+            <tr class="active">
+              <td><a href="/activities/new"> Create a new activity for this trip </a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <%else %>
+              <%end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="trippics">
+      <div class="jumbotron">
+        <img src="<%=@trip.coverpic %>" class="img-responsive">
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="addactivity">
+      <% if current_user.id == @trip.user.id  %>
+      <div class="panel panel-default">
+        <div class="panel-heading"> <h4> Add an Activity </h4>
+
+          <div class="row">
+            <div class="col-md-12">
+              <form action="/create_activity" method="post" class="form-horizontal" enctype="multipart/form-data">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+                <!-- Label and input for name -->
+                <div class="form-group">
+                  <label for="name" class="control-label">
+                    Name
+                  </label>
+
+                  <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @activity.name %>">
+                </div>
+
+                <!-- Label and input for address -->
+                <div class="form-group">
+                  <label for="address" class="control-label">
+                    Address
+                  </label>
+
+                  <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @activity.address %>">
+                </div>
+
+                <!-- Label and input for visit_id -->
+                <div class="form-group">
+                  <!-- <label for="trip_id" class="control-label">
+                  Trip
+                </label> -->
+
+                <input type="hidden" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @trip.id %>">
+              </div>
+
+              <!-- Label and input for when_happened -->
+              <div class="form-group">
+                <label for="when_happened" class="control-label">
+                  Date
+                </label>
+
+                <input type="date" id="when_happened" name="when_happened" placeholder="When happened" class="form-control" value="<%= @trip.start_date %>">
+              </div>
+
+              <!-- Label and input for review -->
+              <div class="form-group">
+                <label for="review" class="control-label">
+                  Review
+                </label>
+
+                <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @activity.review %></textarea>
+              </div>
+
+              <!-- Label and input for activity_rating -->
+              <div class="form-group">
+                <label for="activity_rating" class="control-label">
+                  Activity rating
+                </label>
+
+                <select name="activity_rating" id="activity_rating" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5" selected>5</option>
+                </select>
+
+              </div>
+
+
+              <!-- Label and input for photos -->
+              <div class="form-group">
+                <label for="photos" class="control-label">
+                  Photos
+                </label>
+
+                <input type="file" id="photos" name="photos" class="form-control">
+              </div>
+
+              <button class="btn btn-success">
+                Create Activity
+              </button>
+              or
+              <a href="/activities">Cancel</a>
+            </form>
+
+          </div>
+        </div>
+        <% else %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-<% if @trip.user.id == current_user.id  %>
-<div class="btn-group btn-group-justified">
-  <a href="/users/<%= @trip.user.id %>" class="btn btn-default">
-    Back to My Page
-  </a>
+
+  <div class="btn-group btn-group-justified">
+    <% if @trip.user.id == current_user.id  %>
+    <a href="/users/<%= @trip.user.id %>" class="btn btn-default">
+      Back to My Page
+    </a>
+    <%else%>
+    <a href="/users/<%= @trip.user.id %>" class="btn btn-default">
+      Back to <%= @trip.user.username %>'s page
+    </a>
+  </div>
+  <%end %>
 </div>
-<%else %>
-<div class="btn-group btn-group-justified">
-  <a href="/users/<%= @trip.user.id %>" class="btn btn-default">
-    Back to <%= @trip.user.username %>'s page
-  </a>
-</div>
-<%end %>

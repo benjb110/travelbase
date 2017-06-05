@@ -28,7 +28,6 @@ class ActivitiesController < ApplicationController
     @activity.when_happened = params[:when_happened]
     @activity.review = params[:review]
     @activity.activity_rating = params[:activity_rating]
-    @activity.recommend = params[:recommend]
     @activity.photos = params[:photos]
 
     save_status = @activity.save
@@ -55,7 +54,6 @@ class ActivitiesController < ApplicationController
     @activity.when_happened = params[:when_happened]
     @activity.review = params[:review]
     @activity.activity_rating = params[:activity_rating]
-    @activity.recommend = params[:recommend]
     @activity.photos = params[:photos]
 
     save_status = @activity.save

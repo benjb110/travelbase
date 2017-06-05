@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/create_activity" method="post">
+    <form action="/create_activity" method="post" class="form-horizontal" enctype="multipart/form-data">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -68,7 +68,7 @@
         <label for="activity_rating" class="control-label">
           Activity rating
         </label>
-      
+
         <select name="activity_rating" id="activity_rating" class="form-control">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -79,21 +79,13 @@
 
       </div>
 
-      <!-- Label and input for recommend -->
-      <div class="checkbox">
-        <label for="recommend">
-          <input type="checkbox" id="recommend" name="recommend" value="1" <%= "checked" if @activity.recommend %>>
-          Recommend
-        </label>
-      </div>
-
       <!-- Label and input for photos -->
       <div class="form-group">
         <label for="photos" class="control-label">
           Photos
         </label>
 
-        <input type="text" id="photos" name="photos" placeholder="Photos" class="form-control" value="<%= @activity.photos %>">
+      <input type="file" id="photos" name="photos" class="form-control">
       </div>
 
       <button class="btn btn-success">

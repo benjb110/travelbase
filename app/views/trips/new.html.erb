@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/create_trip" method="post">
+ <form action="/create_trip" method="post" class="form-horizontal" enctype="multipart/form-data">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
@@ -82,14 +82,20 @@
         Rating
       </label>
 
-      <select name="activity_rating" id="activity_rating" class="form-control">
+      <select name="rating" id="rating" class="form-control">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-        <option value="5" selected>5</option>
+        <option value="5">5</option>
       </select>
-      
+    </div>
+
+    <div class="form-group">
+      <label for="file" class="control-label">
+        Trip Cover Pic
+      </label>
+      <input type="file" id="coverpic" name="coverpic" class="form-control">
     </div>
 
     <button class="btn btn-success">

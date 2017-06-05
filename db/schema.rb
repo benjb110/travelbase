@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603213403) do
+ActiveRecord::Schema.define(version: 20170605153906) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "name"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20170603213403) do
     t.date     "when_happened"
     t.text     "review"
     t.integer  "activity_rating"
-    t.boolean  "recommend"
     t.string   "photos"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -41,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170603213403) do
     t.string   "trip_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "coverpic"
   end
 
   create_table "users", force: :cascade do |t|

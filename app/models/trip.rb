@@ -1,4 +1,5 @@
 class Trip < ApplicationRecord
+  mount_uploader :coverpic, CoverpicUploader
 
   belongs_to :user
   belongs_to :country

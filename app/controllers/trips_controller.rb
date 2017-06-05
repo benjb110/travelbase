@@ -27,6 +27,7 @@ class TripsController < ApplicationController
     @trip.comments = params[:comments]
     @trip.country_id = params[:country_id]
     @trip.rating = params[:rating]
+    @trip.coverpic = params[:coverpic]
     @trip.trip_name = params[:trip_name]
 
     save_status = @trip.save
@@ -53,6 +54,7 @@ class TripsController < ApplicationController
     @trip.comments = params[:comments]
     @trip.country_id = params[:country_id]
     @trip.rating = params[:rating]
+    @trip.coverpic = params[:coverpic]
     @trip.trip_name = params[:trip_name]
 
     save_status = @trip.save
