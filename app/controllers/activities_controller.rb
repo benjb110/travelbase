@@ -35,7 +35,7 @@ class ActivitiesController < ApplicationController
     if save_status == true
       redirect_to("/trips/#{@activity.trip.id}", :notice => "Activity created successfully.")
     else
-      redirect("activities/new.html.erb")
+    render("activities/new.html.erb")
     end
   end
 

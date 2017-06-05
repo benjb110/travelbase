@@ -9,6 +9,7 @@
       <th>Trip</th>
       <th>User</th>
       <th>Trip Length</th>
+      <th>Trip Year</th>
       <th>Rating</th>
     </tr>
 
@@ -21,6 +22,8 @@
       <td> <a href="/users/<%= trip.user.id %>"> <%= trip.user.username %>
       </td>
       <td> <%= distance_of_time_in_words(trip.start_date,trip.end_date)%>
+      </td>
+      <td> <%= trip.start_date.year%>
       </td>
       <td>  <% if trip.rating==1 %>
         <i class="fa fa-star" aria-hidden="true"></i>

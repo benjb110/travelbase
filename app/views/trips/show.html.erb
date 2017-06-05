@@ -140,18 +140,7 @@
               <% end %>
             </tr>
             <% end %>
-            <% if @trip.user.id == current_user.id  %>
-            <tr class="active">
-              <td><a href="/activities/new"> Create a new activity for this trip </a></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <%else %>
-              <%end %>
-            </tr>
+          
           </tbody>
         </table>
       </div>
@@ -249,7 +238,7 @@
                 Create Activity
               </button>
               or
-              <a href="/activities">Cancel</a>
+              <a href="/trips/<%= @trip.id %>" class="btn btn-default">Back</a>
             </form>
 
           </div>
