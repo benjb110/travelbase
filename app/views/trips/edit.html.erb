@@ -89,21 +89,22 @@
         <% end %>
       </select>
 
-    <div class="form-group">
-      <label for="file" class="control-label">
-        Trip Cover Pic
-      </label>
-      <input type="file" id="coverpic" name="coverpic" class="form-control">
-    </div>
+      <div class="form-group">
+        <label for="file" class="control-label">
+          Trip Cover Pic
+        </label>
+        <input type="file" id="coverpic" name="coverpic" class="form-control">
+      </div>
 
 
 
-    <button class="btn btn-success">
-      Update Trip
-    </button>
+      <button class="btn btn-success">
+        Update Trip
+      </button>
+    </form>
 
     or
-    <button class="btn btn-default" <a href="/trips/<%= @trip.id %>">Back</a> </button
-    </form>
+   <a href="/trips/<%= @trip.id %>" class="btn btn-default">Back</a> 
+
   </div>
 </div>

@@ -6,6 +6,8 @@
           <h4> Born in <%= @user.country_born.name %></h4>
           <h4> Currently living in <%= @user.country_residing.name %></h4>
           <h4> Has been on <%=@user.trips.count %> trips </h4>
+          <h4> Has traveled for <%= @total_days %> days </h1>
+        <h4> Has been to <%= @countries.count %> countries </h4>
           <% if @user.id== current_user.id  %>
           <p> <a href="/trips/new" class="btn btn-primary btn-md">Create New Trip</a></p>
           <% else %>
@@ -51,6 +53,7 @@
 
   <tbody>
     <h2>Trip Summaries</h2>
+
 
 
 

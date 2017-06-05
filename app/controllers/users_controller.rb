@@ -2,12 +2,14 @@ class UsersController < ApplicationController
   def index
 
     @q = User.ransack(params[:q])
- @users = @q.result
+    @users = @q.result
 
     render("users/index.html.erb")
   end
 
   def show
+
+
 
 
     now= Date.today
@@ -21,7 +23,28 @@ class UsersController < ApplicationController
     end
 
 
-    render("users/show.html.erb")
-  end
+    @total_days = 0
+    @user.trips.each do |trip|
+      @total_days += (trip.end_date-trip.start_date).to_i
+    end
 
-end
+
+    @countries = []
+    @user.trips.each do |trip|
+      if @countries.include?(trip.country)
+      else
+        @countries.push(trip.country)
+      end
+    end
+
+
+        #code
+
+
+
+
+
+        render("users/show.html.erb")
+      end
+
+    end
