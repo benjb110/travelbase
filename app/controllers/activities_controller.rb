@@ -41,6 +41,7 @@ class ActivitiesController < ApplicationController
 
   def edit
     @activity = Activity.find(params[:id])
+    @possible_ratings = [1, 2, 3, 4, 5]
 
     render("activities/edit.html.erb")
   end

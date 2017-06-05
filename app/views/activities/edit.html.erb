@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @activity.errors.any? %>
-  <% @activity.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @activity.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -39,60 +39,63 @@
       <!-- Label and input for visit_id -->
       <div class="form-group">
         <!-- <label for="visit_id" class="control-label">
-          Trip
-        </label> -->
+        Trip
+      </label> -->
 
-        <input type="hidden" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @activity.trip_id %>">
-      </div>
+      <input type="hidden" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @activity.trip_id %>">
+    </div>
 
-      <!-- Label and input for when_happened -->
-      <div class="form-group">
-        <label for="when_happened" class="control-label">
-          When happened
-        </label>
+    <!-- Label and input for when_happened -->
+    <div class="form-group">
+      <label for="when_happened" class="control-label">
+        When happened
+      </label>
 
-        <input type="text" id="when_happened" name="when_happened" placeholder="When happened" class="form-control" value="<%= @activity.when_happened %>">
-      </div>
+      <input type="text" id="when_happened" name="when_happened" placeholder="When happened" class="form-control" value="<%= @activity.when_happened %>">
+    </div>
 
-      <!-- Label and input for review -->
-      <div class="form-group">
-        <label for="review" class="control-label">
-          Review
-        </label>
+    <!-- Label and input for review -->
+    <div class="form-group">
+      <label for="review" class="control-label">
+        Review
+      </label>
 
-        <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @activity.review %></textarea>
-      </div>
+      <textarea id="review" name="review" placeholder="Review" class="form-control" rows="3"><%= @activity.review %></textarea>
+    </div>
 
-      <!-- Label and input for activity_rating -->
-      <div class="form-group">
-        <label for="activity_rating" class="control-label">
-          Activity rating
-        </label>
+    <!-- Label and input for activity_rating -->
+    <div class="form-group">
+      <label for="activity_rating" class="control-label">
+        Activity rating
+      </label>
 
-        <select name="activity_rating" id="activity_rating" class="form-control" value="<%= @activity.activity_rating %>">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
+      <select name="activity_rating" id="activity_rating" class="form-control">
+        <% @possible_ratings.each do |rating| %>
+        <% if rating == @activity.activity_rating %>
+        <option value="<%= rating %>" selected><%= rating %></option>
+        <% else %>
+        <option value="<%= rating %>"><%= rating %></option>
+        <% end %>
+        <% end %>
+      </select>
 
-      </div>
 
-      <!-- Label and input for photos -->
-      <div class="form-group">
-        <label for="photos" class="control-label">
-          Photos
-        </label>
+    </div>
 
-        <input type="text" id="photos" name="photos" placeholder="Photos" class="form-control" value="<%= @activity.photos %>">
-      </div>
+    <!-- Label and input for photos -->
+    <div class="form-group">
+      <label for="photos" class="control-label">
+        Photos
+      </label>
 
-      <button class="btn btn-warning">
-        Update Activity
-      </button>
-      or
-      <a href="/activities/<%= @activity.id %>">Cancel</a>
-    </form>
-  </div>
+      <input type="text" id="photos" name="photos" placeholder="Photos" class="form-control" value="<%= @activity.photos %>">
+    </div>
+
+    <button class="btn btn-warning">
+      Update Activity
+    </button>
+    or
+    <a href="/activities/<%= @activity.id %>">Cancel</a>
+  </form>
+</div>
 </div>

@@ -41,6 +41,7 @@ class TripsController < ApplicationController
 
   def edit
     @trip = Trip.find(params[:id])
+    @possible_ratings = [1, 2, 3, 4, 5]
 
     render("trips/edit.html.erb")
   end
