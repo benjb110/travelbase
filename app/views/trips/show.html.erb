@@ -88,7 +88,6 @@
           <thead>
             <tr>
               <th>Activity</th>
-              <th>Type</th>
               <th>Date</th>
               <th>City</th>
               <th>Rating</th>
@@ -105,7 +104,6 @@
             <%@trip.activities.each do |activity| %>
             <tr class="success">
               <td> <a href="/activities/<%= activity.id %>"> <%=activity.name %> </a> </td>
-              <td> <%=activity.name %> </td>
               <td><%=activity.when_happened %></td>
               <td> city </td>
               <td>
@@ -140,7 +138,7 @@
               <% end %>
             </tr>
             <% end %>
-          
+
           </tbody>
         </table>
       </div>

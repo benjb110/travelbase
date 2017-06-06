@@ -8,22 +8,28 @@
   <li class="active"><a href="#reviews" data-toggle="tab">Review and Rating</a></li>
   <li> <a href="#map" data-toggle="tab">Map</a></li>
   <li> <a href="#pics" data-toggle="tab">Activity Pic</a></li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      Dropdown <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
-      <li class="divider"></li>
-      <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
-    </ul>
+    <% if @activity.user.id == current_user.id  %>
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Options <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li> <a href="/activities/<%= @activity.id %>/edit"> Edit Activity</a> </li>
+        <li class="divider"></li>
+        <li> <a href="/delete_activity/<%= @activity.id %>"> Delete Activity</a></li>
+      </ul>
+      <%else %>
+      <li class="disabled"><a>Options</a></li>
+      <%end %>
+    </li>
+
   </li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="reviews">
-<dt> Review </dt>
-   <dd>   <p> <%= @activity.review %>   <p>  </dd>
-<dt> Rating </dt>
+    <dt> Review </dt>
+    <dd>   <p> <%= @activity.review %>   <p>  </dd>
+      <dt> Rating </dt>
       <dd>
         <% if @activity.activity_rating==1 %>
         <i class="fa fa-star" aria-hidden="true"></i>
@@ -47,18 +53,18 @@
         <i class="fa fa-star" aria-hidden="true"></i>
         <% end %>
       </dd>
-  </div>
-  <div class="tab-pane fade" id="map">
-    <dt>Map</dt>
-    <dd>
-      <iframe
-      width="600"
-      height="450"
-      frameborder="0" style="border:0"
-      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAO_JsHfsCnleobA0XTfJj91GRM818vmsA
-      &q=<%= @addr.gsub(' ','+') %>" allowfullscreen>
-    </iframe>
-  </dd>
+    </div>
+    <div class="tab-pane fade" id="map">
+      <dt>Map</dt>
+      <dd>
+        <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAO_JsHfsCnleobA0XTfJj91GRM818vmsA
+        &q=<%= @addr.gsub(' ','+') %>" allowfullscreen>
+      </iframe>
+    </dd>
   </div>
 
   <div class="tab-pane fade" id="pics">
@@ -68,26 +74,5 @@
   </div>
 
 
-  <div class="tab-pane fade" id="dropdown1">
-    <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
-  </div>
-  <div class="tab-pane fade" id="dropdown2">
-    <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
-  </div>
-</div>
-
-
-
-  <div class="btn-group btn-group-justified">
-    <a href="/trips/<%= @activity.trip.id %>" class="btn btn-primary">
-      Back
-    </a>
-    <a href="/activities/<%= @activity.id %>/edit" class="btn btn-warning">
-      Edit
-    </a>
-    <a href="/delete_activity/<%= @activity.id %>" class="btn btn-danger" rel="nofollow">
-      Delete
-    </a>
-  </div>
 </div>
 </div>
