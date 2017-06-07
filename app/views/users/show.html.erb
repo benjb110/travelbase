@@ -88,7 +88,7 @@
         <i class="fa fa-star" aria-hidden="true"></i>
         <% end %>
       </td>
-      <td><%=trip.comments %></td>
+      <td><%=truncate(trip.comments) %></td>
       <% if @user.id== current_user.id  %>
       <td> <a href="/trips/<%= trip.id %>/edit"> edit this trip </a> </td>
       <% else %>

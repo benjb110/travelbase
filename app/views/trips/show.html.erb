@@ -37,7 +37,9 @@
           <!-- <dt>End date</dt>
           <dd><%= @trip.end_date %></dd> -->
           <dt>Country</dt>
-          <dd><%= @trip.country.name %></dd>
+          <dd>
+ <a href="/countries/<%= @trip.country.id %>"> <%=@trip.country.name  %> </a>
+ </dd>
 
           <dt>Trip Length</dt>
           <dd><%= distance_of_time_in_words(@trip.start_date,@trip.end_date) %></dd>
@@ -89,7 +91,6 @@
             <tr>
               <th>Activity</th>
               <th>Date</th>
-              <th>City</th>
               <th>Rating</th>
               <th>Reviews</th>
               <% if @trip.user.id == current_user.id  %>
@@ -105,7 +106,6 @@
             <tr class="success">
               <td> <a href="/activities/<%= activity.id %>"> <%=activity.name %> </a> </td>
               <td><%=activity.when_happened %></td>
-              <td> city </td>
               <td>
 
                 <% if activity.activity_rating==1 %>
@@ -131,7 +131,7 @@
                 <% end %>
 
               </td>
-              <td><%=activity.review %></td>
+              <td><%=truncate(activity.review) %></td>
               <% if @trip.user.id == current_user.id  %>
               <td> <a href="/activities/<%= activity.id %>/edit"> edit this activity </a> </td>
               <% else %>

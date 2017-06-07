@@ -1,6 +1,6 @@
 <div class="page-header">
   <h3> <%= @activity.name %></h3>
-  <h4><%= @activity.trip.trip_name %> </h4>
+  <h4> <a href="/trips/<%= @activity.trip.id %>"> <%=@activity.trip.trip_name %></a> </h4>
   <h5> <%= @activity.when_happened %> </h5>
 </div>
 
